@@ -1,6 +1,9 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-
+import "../Styles/Main.scss";
+import MainPageHeader from '../components/MainPageHeader';
+import ProductsList from '../components/ProductsList';
+import Footer from '../components/Footer';
 
 
 
@@ -36,7 +39,11 @@ const Main = () => {
     }, [])
 
     return(
-        <div>Main Page</div>
+        <div className='main'>
+            <MainPageHeader/>
+            <ProductsList/>
+            <Footer/>
+        </div>
     )
 
 }
