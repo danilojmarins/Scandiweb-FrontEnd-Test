@@ -1,9 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import "../Styles/Main.scss";
-import MainPageHeader from '../components/MainPageHeader';
-import ProductsList from '../components/ProductsList';
 import Footer from '../components/Footer';
+import '../Styles/Main.scss';
 
 
 
@@ -40,9 +38,22 @@ const Main = () => {
 
     return(
         <div className='main'>
-            <MainPageHeader/>
-            <ProductsList/>
+
+            <div className='header'>
+                <h1>Product List</h1>
+                <button className='add-btn'>ADD</button>
+                <button id='delete-product-btn' className='delete-btn'>MASS DELETE</button>
+            </div>
+
+            <div className='products'>
+                <div className='product'>
+                    <input className='delete-checkbox' type='checkbox' name='checkbox'/>
+                    <label for='checkbox' className='check-label'><p>Product Information</p></label>
+                </div>
+            </div>
+
             <Footer/>
+
         </div>
     )
 

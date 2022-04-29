@@ -1,5 +1,50 @@
 @import "./variables.scss";
 
-h1{
-    font-size: $title;
+body {
+    @include bodyStyle();
+}
+
+h1 {
+    @include titleText();
+}
+
+p {
+    @include bodyText();
+}
+
+.header {
+    background-color: $middleColor;
+}
+
+.add-btn {
+    @include buttonStyle(green, white);
+}
+.delete-btn {
+    @include buttonStyle(red, white);
+    width: 135px;
+}
+
+.products {
+    background-color: $lightColor;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.product {
+    width: 150px;
+    height: 200px;
+    border: 2px solid #555;
+    border-radius: 6px;
+    margin: 3% 5%;
+}
+.product p {
+    text-align: center;
+}
+
+.footer {
+    background-color: $darkColor;
+    margin: 0;
+    padding: 0;
 }
