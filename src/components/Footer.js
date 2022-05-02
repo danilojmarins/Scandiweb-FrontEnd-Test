@@ -5,7 +5,7 @@ import '../Styles/Footer.scss';
 function Footer() {
     return (
         <div className='footer'>
-                <p>Scandiweb Test assignment</p>
+                <p>Scandiweb Test Assignment</p>
         </div>
     );
 }

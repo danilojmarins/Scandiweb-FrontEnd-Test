@@ -41,16 +41,50 @@ const Main = () => {
 
             <div className='header'>
                 <h1>Product List</h1>
-                <button className='add-btn'>ADD</button>
-                <button id='delete-product-btn' className='delete-btn'>MASS DELETE</button>
+                <div className='btns'>
+                    <button className='add-btn'>ADD</button>
+                    <button id='#delete-product-btn' className='delete-btn'>MASS DELETE</button>
+                </div>
             </div>
+
+            <hr></hr>
 
             <div className='products'>
                 <div className='product'>
-                    <input className='delete-checkbox' type='checkbox' name='checkbox'/>
-                    <label for='checkbox' className='check-label'><p>Product Information</p></label>
+                    <input className='delete-checkbox' type='checkbox' id='sku'/>
+                    <label for='sku' className='check-label'><p><br></br><br></br>Product Information</p></label>
+                </div>
+                <div className='product'>
+                    <input className='delete-checkbox' type='checkbox' id='sku2'/>
+                    <label for='sku2' className='check-label'><p><br></br><br></br>Product Information</p></label>
+                </div>
+                <div className='product'>
+                    <input className='delete-checkbox' type='checkbox' id='sku3'/>
+                    <label for='sku3' className='check-label'><p><br></br><br></br>Product Information</p></label>
+                </div>
+                <div className='product'>
+                    <input className='delete-checkbox' type='checkbox' id='sku4'/>
+                    <label for='sku4' className='check-label'><p><br></br><br></br>Product Information</p></label>
+                </div>
+                <div className='product'>
+                    <input className='delete-checkbox' type='checkbox' id='sku5'/>
+                    <label for='sku5' className='check-label'><p><br></br><br></br>Product Information</p></label>
+                </div>
+                <div className='product'>
+                    <input className='delete-checkbox' type='checkbox' id='sku6'/>
+                    <label for='sku6' className='check-label'><p><br></br><br></br>Product Information</p></label>
+                </div>
+                <div className='product'>
+                    <input className='delete-checkbox' type='checkbox' id='sku7'/>
+                    <label for='sku7' className='check-label'><p><br></br><br></br>Product Information</p></label>
+                </div>
+                <div className='product'>
+                    <input className='delete-checkbox' type='checkbox' id='sku8'/>
+                    <label for='sku8' className='check-label'><p><br></br><br></br>Product Information</p></label>
                 </div>
             </div>
+
+            <hr className='footerHR'></hr>
 
             <Footer/>
 
