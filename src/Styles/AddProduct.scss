@@ -1,1 +1,70 @@
 @import "./variables.scss";
+
+body {
+    @include bodyStyle();
+    margin: 0 10% 0 10%;
+}
+
+h1 {
+    @include titleText();
+    width: 450px;
+    margin: 1% 0 1% 2%;
+}
+
+p {
+    @include bodyText();
+}
+
+.label {
+    @include bodyText();
+    margin-right: 10px;
+    display: inline-block;
+    width: 150px;
+}
+
+
+
+.save-btn {
+    @include buttonStyle(green, white);
+}
+.save-btn:hover {
+    box-shadow: 0 0 10px #0A0;
+}
+
+.cancel-btn {
+    @include buttonStyle(grey, black);
+}
+.cancel-btn:hover {
+    box-shadow: 0 0 10px #333;
+}
+
+
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+.item {
+    flex: 1;
+    margin: 2%;
+}
+
+input {
+    border-radius: 5px;
+    border-width: 1px;
+    height: 25px;
+    font: 1rem sans-serif;
+}
+#sku {
+    width: 150px;
+}
+#price {
+    width: 100px;
+}
+select {
+    border-radius: 5px;
+    border-width: 1px;
+    height: 25px;
+    width: 100px;
+    font: 1rem sans-serif;
+}

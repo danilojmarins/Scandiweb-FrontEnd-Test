@@ -1,5 +1,4 @@
 import React from 'react';
-import Footer from '../components/Footer';
 import '../Styles/AddProduct.scss';
 
 const AddProduct = () => {
@@ -8,34 +7,50 @@ const AddProduct = () => {
             
             <div className='header'>
                 <h1>Product Add</h1>
-                <button type='submit' className='save-btn'>Save</button>
-                <button className='cancel-btn'>Cancel</button>
+                <div className='btns'>
+                    <button type='submit' className='save-btn'>Save</button>
+                    <button className='cancel-btn'>Cancel</button>
+                </div>
             </div>
+
+            <hr></hr>
 
             <div className='form'>
                 <form id='#product_form' method='post'>
 
-                    <label>SKU</label>
-                    <input type='text' id='#sku'></input>
+                    <div className='item'>
+                        <label className='label'>SKU</label>
+                        <input type='text' id='sku'></input>
+                    </div>
 
-                    <label>Name</label>
-                    <input type='text' id='#name'></input>
+                    <div className='item'>
+                        <label className='label'>Name</label>
+                        <input type='text' id='name'></input>
+                    </div>
 
-                    <label>Price ($)</label>
-                    <input type='text' id='#price'></input>
+                    <div className='item'>
+                        <label className='label'>Price ($)</label>
+                        <input type='text' id='price'></input>
+                    </div>
 
-                    <label>Type Switcher</label>
-                    <input type='text' list='#productType' placeholder='Type Switcher'></input>
-                    <datalist id='#productType'>
-                        <option value='DVD'/>
-                        <option value='Book'/>
-                        <option value='Furniture'/>
-                    </datalist>
+                    <div className='item'>
+                        <label className='label' for='type'>Type Switcher</label>
+                        <select id='type' name='Type Switcher'>
+                            <option value='select' selected>Select</option>
+                            <option value='dvd'>DVD</option>
+                            <option value='book'>Book</option>
+                            <option value='furniture'>Furniture</option>
+                        </select>
+                    </div>
 
                 </form>
             </div>
 
-            <Footer/>
+            <hr></hr>
+
+            <div className='footer'>
+                <p>Scandiweb Test Assignment</p>
+            </div>
 
         </div>
     )

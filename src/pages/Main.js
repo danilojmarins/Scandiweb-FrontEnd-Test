@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import Footer from '../components/Footer';
+import { useNavigate } from 'react-router-dom';
 import '../Styles/Main.scss';
 
 
@@ -36,13 +36,19 @@ const Main = () => {
         document.title = 'Products List'
     }, [])
 
+    const navigate = useNavigate();
+    const routeChange = () => {
+        let path = 'add-product';
+        navigate(path);
+    }
+
     return(
         <div className='main'>
 
             <div className='header'>
                 <h1>Product List</h1>
                 <div className='btns'>
-                    <button className='add-btn'>ADD</button>
+                    <button className='add-btn' onClick={routeChange}>ADD</button>
                     <button id='#delete-product-btn' className='delete-btn'>MASS DELETE</button>
                 </div>
             </div>
@@ -51,8 +57,8 @@ const Main = () => {
 
             <div className='products'>
                 <div className='product'>
-                    <input className='delete-checkbox' type='checkbox' id='sku'/>
-                    <label for='sku' className='check-label'><p><br></br><br></br>Product Information</p></label>
+                    <input className='delete-checkbox' type='checkbox' id='sku1'/>
+                    <label for='sku1' className='check-label'><p><br></br><br></br>Product Information</p></label>
                 </div>
                 <div className='product'>
                     <input className='delete-checkbox' type='checkbox' id='sku2'/>
@@ -86,7 +92,9 @@ const Main = () => {
 
             <hr className='footerHR'></hr>
 
-            <Footer/>
+            <div className='footer'>
+                <p>Scandiweb Test Assignment</p>
+            </div>
 
         </div>
     )
