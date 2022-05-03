@@ -1,7 +1,38 @@
 import React from 'react';
+import { useEffect, useState } from 'react';
 import '../Styles/AddProduct.scss';
+import TypeSwitcher from '../components/TypeSwitcher';
+import { useNavigate } from 'react-router-dom';
+
+
 
 const AddProduct = () => {
+
+    const initialValue = {SKU: '', Name: '', Price: '', Specification: ''};
+    const [product, setProduct] = useState(initialValue);
+    const [savingProduct, setSavingProduct] = useState(false);
+    const [errors, setErrors] = useState({});
+
+    const { SKU, Name, Price, Specification } = product;
+
+    async function saveProduct(e) {
+        e.preventDefault();
+    } 
+
+
+    const navigate = useNavigate();
+    const routeChange = () => {
+        let path = '/';
+        navigate(path);
+    }
+
+
+    const changeProductData = e => {
+        setProduct({...product, [e.target.name]: e.target.vaule});
+        setErrors({});
+    }
+
+
     return(
         <div className='addProduct'>
             
@@ -9,7 +40,7 @@ const AddProduct = () => {
                 <h1>Product Add</h1>
                 <div className='btns'>
                     <button type='submit' className='save-btn'>Save</button>
-                    <button className='cancel-btn'>Cancel</button>
+                    <button className='cancel-btn' onClick={routeChange}>Cancel</button>
                 </div>
             </div>
 
@@ -20,28 +51,20 @@ const AddProduct = () => {
 
                     <div className='item'>
                         <label className='label'>SKU</label>
-                        <input type='text' id='sku'></input>
+                        <input type='text' id='sku' name='SKU' value={SKU} onChange={changeProductData}></input>
                     </div>
 
                     <div className='item'>
                         <label className='label'>Name</label>
-                        <input type='text' id='name'></input>
+                        <input type='text' id='name' name='Name' value={Name} onChange={changeProductData}></input>
                     </div>
 
                     <div className='item'>
                         <label className='label'>Price ($)</label>
-                        <input type='text' id='price'></input>
+                        <input type='text' id='price' name='Price' value={Price} onChange={changeProductData}></input>
                     </div>
 
-                    <div className='item'>
-                        <label className='label' for='type'>Type Switcher</label>
-                        <select id='type' name='Type Switcher'>
-                            <option value='select' selected>Select</option>
-                            <option value='dvd'>DVD</option>
-                            <option value='book'>Book</option>
-                            <option value='furniture'>Furniture</option>
-                        </select>
-                    </div>
+                    <TypeSwitcher changeProductData={changeProductData} Specification={product.Specification}/>
 
                 </form>
             </div>
