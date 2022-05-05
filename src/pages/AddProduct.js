@@ -1,26 +1,56 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import '../Styles/AddProduct.scss';
-import TypeSwitcher from '../components/TypeSwitcher';
 import { useNavigate } from 'react-router-dom';
+import '../Styles/AddProduct.scss';
+import TypeSwitcherFunc from '../components/TypeSwitcherFunc';
+
 
 
 
 const AddProduct = () => {
 
-    const productInitialValue = {SKU: '', Name: '', Price: '', Specification: ''};
-    const [product, setProduct] = useState(productInitialValue);
-    const specificationInitialValue = {dvdSpeci: '', bookSpeci: '', furnitSpeciH: '', furnitSpeciW: '', furnitSpeciL: ''};
-    const [specification, setSpecification] = useState(specificationInitialValue);
+    const [SKU, setSKU] = useState('');
+    const [Name, setName] = useState('');
+    const [Price, setPrice] = useState('');
+    const [Specification, setSpecification] = useState('');
     const [savingProduct, setSavingProduct] = useState(false);
     const [errors, setErrors] = useState({});
+    const [aviso, setAviso] = useState('');
 
-    const { SKU, Name, Price, Specification } = product;
-    const { dvdSpeci, bookSpeci, furnitSpeciH, furnitSpeciW, furnitSpeciL } = specification;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const product = {SKU, Name, Price, Specification};
+
 
     async function saveProduct(e) {
+
         e.preventDefault();
-    } 
+
+        setSavingProduct(true);
+
+            let url = 'http://localhost/Scandiweb-Backend-Test/post.php';
+            await fetch (url, {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json' 
+                },
+                body: JSON.stringify(product)
+            }).then(response => response.json())
+            .then(data => {
+                console.log(data);
+                setSKU('');
+                setName('');
+                setPrice('');
+                setSpecification('');
+                routeChange();
+            }).catch(function(error) {
+                console.error(`Saving product failed: ${error.message}`)
+                console.log(JSON.stringify(product));
+            })
+
+        setSavingProduct(false);
+
+    }
 
 
     const navigate = useNavigate();
@@ -30,18 +60,22 @@ const AddProduct = () => {
     }
 
 
-    const changeProductData = e => {
-        setProduct({...product, [e.target.name]: e.target.value});
-        setSpecification({...specification, [e.target.name]: e.target.value})
-        setErrors({});
+    const handleSkuChange = async (e) => {
+        setSKU(e.target.value);
+    }
+
+    const handleNameChange = async (e) => {
+        setName(e.target.value);
+    }
+
+    const handlePriceChange = async (e) => {
+        setPrice(e.target.value);
+    }
+
+
+    useEffect(() => {
         console.log(product);
-        console.log(specification);
-    }
-
-
-    const specificationForm = () => {
-        
-    }
+    }, [product]);
 
 
     return(
@@ -50,7 +84,7 @@ const AddProduct = () => {
             <div className='header'>
                 <h1>Product Add</h1>
                 <div className='btns'>
-                    <button type='submit' className='save-btn'>Save</button>
+                    <button type='submit' className='save-btn' onClick={saveProduct}>Save</button>
                     <button className='cancel-btn' onClick={routeChange}>Cancel</button>
                 </div>
             </div>
@@ -62,20 +96,20 @@ const AddProduct = () => {
 
                     <div className='item'>
                         <label className='label'>SKU</label>
-                        <input type='text' id='sku' name='SKU' value={SKU} onChange={changeProductData}></input>
+                        <input autoComplete='off' type='text' id='sku' name='SKU' value={SKU} onChange={handleSkuChange}></input>
                     </div>
 
                     <div className='item'>
                         <label className='label'>Name</label>
-                        <input type='text' id='name' name='Name' value={Name} onChange={changeProductData}></input>
+                        <input autoComplete='off' type='text' id='name' name='Name' value={Name} onChange={handleNameChange}></input>
                     </div>
 
                     <div className='item'>
                         <label className='label'>Price ($)</label>
-                        <input type='text' id='price' name='Price' value={Price} onChange={changeProductData}></input>
+                        <input autoComplete='off' type='text' id='price' name='Price' value={Price} onChange={handlePriceChange}></input>
                     </div>
 
-                    <TypeSwitcher changeProduct={changeProductData} dvdSpeci={dvdSpeci} bookSpeci={bookSpeci} furnitSpeciH={furnitSpeciH} furnitSpeciW={furnitSpeciW} furnitSpeciL={furnitSpeciL}/>
+                    <TypeSwitcherFunc setSpecification={setSpecification}/>
 
                 </form>
             </div>
