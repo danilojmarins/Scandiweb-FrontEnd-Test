@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../Styles/AddProduct.scss';
 import TypeSwitcherFunc from '../components/TypeSwitcherFunc';
+import axios from 'axios';
 
 
 
@@ -15,7 +16,6 @@ const AddProduct = () => {
     const [Specification, setSpecification] = useState('');
     const [savingProduct, setSavingProduct] = useState(false);
     const [errors, setErrors] = useState({});
-    const [aviso, setAviso] = useState('');
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const product = {SKU, Name, Price, Specification};
@@ -27,12 +27,14 @@ const AddProduct = () => {
 
         setSavingProduct(true);
 
+            /*
             let url = 'http://localhost/Scandiweb-Backend-Test/post.php';
             await fetch (url, {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
-                    'Content-Type': 'application/json' 
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
                 },
                 body: JSON.stringify(product)
             }).then(response => response.json())
@@ -47,6 +49,17 @@ const AddProduct = () => {
                 console.error(`Saving product failed: ${error.message}`)
                 console.log(JSON.stringify(product));
             })
+            */
+
+            axios.post('http://localhost/Scandiweb-Backend-Test/post.php', product)
+            .then(res => {
+                console.log(res.data);
+                setSKU('');
+                setName('');
+                setPrice('');
+                setSpecification('');
+                routeChange();
+            });
 
         setSavingProduct(false);
 

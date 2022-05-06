@@ -18,7 +18,7 @@ const Main = () => {
 
     async function getProducts() {
         setLoadingProducts(true);
-        let url = "http://localhost/Server/";
+        let url = "http://localhost/Scandiweb-Backend-Test/get.php";
         await fetch(url)
         .then(response => response.json())
         .then(data => {
