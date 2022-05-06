@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import '../Styles/AddProduct.scss';
 import TypeSwitcherFunc from '../components/TypeSwitcherFunc';
 import axios from 'axios';
+import Form from 'react-bootstrap/Form';
 
 
 
@@ -20,12 +21,39 @@ const AddProduct = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const product = {SKU, Name, Price, Specification};
 
+    
+    const productErrorsValidation = () => {
+
+        const newErrors = {}
+
+        if (!SKU || SKU === '') newErrors.SKU = 'SKU must be assigned a value';
+        
+
+        if (!Name || Name === '') newErrors.Name = 'Name must be assigned a value';
+
+
+        if (!Price || Price === '') newErrors.Price = 'Price must be assigned a value';
+        else if (isNaN(parseFloat(Price))) newErrors.Price = 'Price must contain only numbers';
+
+        
+        if (!Specification || Specification === '' || Specification === ' MB' || Specification === ' KG' || Specification === ' x  x ') newErrors.Specification = 'Specification must be assigned a value';
+
+        return newErrors;
+
+    }
+
 
     async function saveProduct(e) {
 
         e.preventDefault();
 
-        setSavingProduct(true);
+        const newErrors = productErrorsValidation();
+
+        if(Object.keys(newErrors).length > 0) {
+            setErrors(newErrors);
+        } else {
+
+            setSavingProduct(true);
 
             /*
             let url = 'http://localhost/Scandiweb-Backend-Test/post.php';
@@ -61,7 +89,9 @@ const AddProduct = () => {
                 routeChange();
             });
 
-        setSavingProduct(false);
+            setSavingProduct(false);
+
+        }
 
     }
 
@@ -87,6 +117,7 @@ const AddProduct = () => {
 
 
     useEffect(() => {
+        document.title = 'Add Product';
         console.log(product);
     }, [product]);
 
@@ -107,22 +138,25 @@ const AddProduct = () => {
             <div className='form'>
                 <form id='product_form' method='post' >
 
-                    <div className='item'>
-                        <label className='label'>SKU</label>
-                        <input autoComplete='off' type='text' id='sku' name='SKU' value={SKU} onChange={handleSkuChange}></input>
-                    </div>
+                    <Form.Group className='item'>
+                        <Form.Label className='label'>SKU</Form.Label>
+                        <Form.Control autoComplete='off' type='text' id='sku' name='SKU' value={SKU} onChange={handleSkuChange} isInvalid={!!errors.SKU}></Form.Control>
+                        <Form.Control.Feedback type='invalid' className='feedback'>{errors.SKU}</Form.Control.Feedback>
+                    </Form.Group>
 
-                    <div className='item'>
-                        <label className='label'>Name</label>
-                        <input autoComplete='off' type='text' id='name' name='Name' value={Name} onChange={handleNameChange}></input>
-                    </div>
+                    <Form.Group className='item'>
+                        <Form.Label className='label'>Name</Form.Label>
+                        <Form.Control autoComplete='off' type='text' id='name' name='Name' value={Name} onChange={handleNameChange} isInvalid={!!errors.Name}></Form.Control>
+                        <Form.Control.Feedback type='invalid' className='feedback'>{errors.Name}</Form.Control.Feedback>
+                    </Form.Group>
 
-                    <div className='item'>
-                        <label className='label'>Price ($)</label>
-                        <input autoComplete='off' type='text' id='price' name='Price' value={Price} onChange={handlePriceChange}></input>
-                    </div>
+                    <Form.Group className='item'>
+                        <Form.Label className='label'>Price ($)</Form.Label>
+                        <Form.Control autoComplete='off' type='text' id='price' name='Price' value={Price} onChange={handlePriceChange} isInvalid={!!errors.Price}></Form.Control>
+                        <Form.Control.Feedback type='invalid' className='feedback'>{errors.Price}</Form.Control.Feedback>
+                    </Form.Group>
 
-                    <TypeSwitcherFunc setSpecification={setSpecification}/>
+                    <TypeSwitcherFunc setSpecification={setSpecification} errors={errors}/>
 
                 </form>
             </div>

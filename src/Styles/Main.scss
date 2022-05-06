@@ -78,12 +78,14 @@ p {
     }
 
     p {
+        font-size: 1.1rem;
         text-align: center;
         cursor: pointer;
         height: 200px;
         position: relative;
-        bottom: 27px;
+        bottom: 38px;
         margin: auto;
+        line-height: 32px;
     }
 }
 

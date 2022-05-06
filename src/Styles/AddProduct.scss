@@ -50,6 +50,7 @@ p {
 }
 
 input {
+    display: inline-block;
     border-radius: 5px;
     border-width: 1px;
     height: 25px;
@@ -67,4 +68,14 @@ select {
     height: 25px;
     width: 100px;
     font: 1rem sans-serif;
+}
+
+.feedback {
+    display: flex;
+    font-size: 0.8rem;
+    color: red;
+    position: relative;
+    left: 165px;
+    margin-top: 5px;
+    
 }

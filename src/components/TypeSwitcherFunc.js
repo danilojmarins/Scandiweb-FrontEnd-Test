@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 
 
-const TypeSwitcherFunc = ({ product, setSpecification }) => {
+
+const TypeSwitcherFunc = ({ setSpecification }) => {
 
     const [dvdSpeci, setDvdSpeci] = useState('');
     const [bookSpeci, setBookSpeci] = useState('');
@@ -26,7 +27,7 @@ const TypeSwitcherFunc = ({ product, setSpecification }) => {
         setDvdSpeci(e.target.value);
         console.log(dvdSpeci);
 
-        setSpecification(e.target.value + ' MB');
+        setSpecification('Size: ' + e.target.value + ' MB');
     }
 
 
@@ -34,7 +35,7 @@ const TypeSwitcherFunc = ({ product, setSpecification }) => {
         setBookSpeci(e.target.value);
         console.log(bookSpeci);
 
-        setSpecification(e.target.value + ' KG');
+        setSpecification('Weight: ' + e.target.value + 'KG');
     }
 
 
@@ -43,7 +44,7 @@ const TypeSwitcherFunc = ({ product, setSpecification }) => {
         setFurnitH(e.target.value);
         console.log(furnitH);
 
-        setSpecification(e.target.value + ' x ' + furnitW + ' x ' + furnitL);
+        setSpecification('Dimension: ' + e.target.value + 'x' + furnitW + 'x' + furnitL);
     }
 
 
@@ -51,7 +52,7 @@ const TypeSwitcherFunc = ({ product, setSpecification }) => {
         setFurnitW(e.target.value);
         console.log(furnitW);
 
-        setSpecification(furnitH + ' x ' + e.target.value + ' x ' + furnitL);
+        setSpecification('Dimension: ' + furnitH + 'x' + e.target.value + 'x' + furnitL);
     }
 
 
@@ -59,7 +60,7 @@ const TypeSwitcherFunc = ({ product, setSpecification }) => {
         setFurnitL(e.target.value);
         console.log(furnitL);
 
-        setSpecification(furnitH + ' x ' + furnitW + ' x ' + e.target.value);
+        setSpecification('Dimension: ' + furnitH + 'x' + furnitW + 'x' + e.target.value);
     }
 
     if(type === 'Select') {
