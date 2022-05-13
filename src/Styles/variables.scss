@@ -1,8 +1,12 @@
+/* Google Fonts Importings */
+
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
-$bckGrdColor: #DCDCDC;
+$bckGrdColor: #DCDCDC; // backgroud-color used for whole site
 
+
+/* Style used in Body */
 
 @mixin bodyStyle {
     margin: 0;
@@ -10,25 +14,33 @@ $bckGrdColor: #DCDCDC;
     background-color: $bckGrdColor;
 }
 
-@mixin titleText {
-    font-size: 3.5rem;
+
+/* Style used in Title Text */
+
+@mixin titleText() {
     font-family: 'Montserrat', sans-serif;
     margin: 0;
 }
 
-@mixin bodyText {
+
+/* Style used in Body Text */
+
+@mixin bodyText() {
     font-family: 'Open Sans', sans-serif;
     font-size: 1.2rem;
     margin: 0;
 }
 
-@mixin buttonStyle($backColor, $color) {
-    width: 80px;
-    height: 40px;
+
+/* Style used in Buttons */
+
+@mixin buttonStyle($backColor, $color, $width, $height, $fontSize) {
+    width: $width;
+    height: $height;
     border-radius: 5px;
     background-color: $backColor;
     color: $color;
-    font-size: 15px;
+    font-size: $fontSize;
     padding: 10px;
     margin: 10px;
     border-width: 0;
