@@ -14,7 +14,7 @@ const Main = () => {
     // Send Get Request to API:
     async function getProducts() {
 
-        let url = "http://localhost/Scandiweb-Backend-Test/get.php";
+        let url = "https://scandiweb-test-assignment-danilojmarins.000webhostapp.com/";
         await fetch(url)
         .then(response => response.json())
         .then(data => {
@@ -33,7 +33,7 @@ const Main = () => {
 
         for(let i = 0; i < selectedProducts.length; i++) {
             
-            let url = 'http://localhost/Scandiweb-Backend-Test/delete.php?SKU=' + selectedProducts[i];
+            let url = 'https://scandiweb-test-assignment-danilojmarins.000webhostapp.com/delete.php?SKU=' + selectedProducts[i];
 
             axios.get(url)
             .then(res => {

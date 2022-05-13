@@ -59,7 +59,7 @@ const AddProduct = () => {
             setSpecificationErrors(newSpecificationErrors);
         } else {
 
-            axios.post('http://localhost/Scandiweb-Backend-Test/post.php', product)
+            axios.post('https://scandiweb-test-assignment-danilojmarins.000webhostapp.com/post.php', product)
             .then(res => {
                 console.log(res.data);
                 setSKU('');
