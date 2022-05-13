@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../Styles/AddProduct.scss';
 import TypeSwitcherFunc from '../components/TypeSwitcherFunc';
-import axios from 'axios';
+import ky from 'ky';
 import Form from 'react-bootstrap/Form';
 
 
@@ -59,16 +59,16 @@ const AddProduct = () => {
             setSpecificationErrors(newSpecificationErrors);
         } else {
 
-            axios.post('https://scandiweb-test-assignment-danilojmarins.000webhostapp.com/post.php', product)
+            ky.post('https://scandiweb-test-assignment-danilojmarins.000webhostapp.com/post.php', { body: JSON.stringify(product) })
             .then(res => {
-                console.log(res.data);
+                console.log(res.body);
                 setSKU('');
                 setName('');
                 setPrice('');
                 setSpecification('');
                 routeChange();
             });
-
+            
         }
 
     }
