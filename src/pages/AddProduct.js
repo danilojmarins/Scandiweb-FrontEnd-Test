@@ -36,13 +36,19 @@ const AddProduct = () => {
 
 
         if (!Price || Price === '') newErrors.Price = 'Price must be assigned a value';
-        else if (isNaN(parseFloat(Price))) newErrors.Price = 'Price must contain only numbers';
+        else if (priceNumberValidation() === false) newErrors.Price = 'Price must contain only numbers';
 
         
         if (!Specification || Specification === '' || Specification === ' MB' || Specification === ' KG' || Specification === ' x  x ') newErrors.Specification = 'Specification must be assigned a value';
 
         return newErrors;
 
+    }
+
+
+    // Validate if Price contain only numbers:
+    function priceNumberValidation() {
+        return /^[0-9.,]+$/.test(Price);
     }
 
 

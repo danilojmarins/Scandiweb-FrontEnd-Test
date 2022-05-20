@@ -84,25 +84,47 @@ const TypeSwitcherFunc = ({ setSpecification, specificationErrorsValidation, new
         if(type === 'Selected') newSpecificationErrors.Type = 'Choose a product type';
         else if (type === 'DVD') {
             if (!dvdSpeci || dvdSpeci === '') newSpecificationErrors.Specification = 'Size must be assigned a value';
-            else if (isNaN(parseFloat(dvdSpeci))) newSpecificationErrors.Specification = 'Size must contain only numbers';
+            else if (dvdSpeciNumberValidation() === false) newSpecificationErrors.Specification = 'Size must contain only numbers';
         }
         else if (type === 'Book') {
             if (!bookSpeci || bookSpeci === '') newSpecificationErrors.Specification = 'Weight must be assigned a value';
-            else if (isNaN(parseFloat(bookSpeci))) newSpecificationErrors.Specification = 'Weight must contain only numbers';
+            else if (bookSpeciNumberValidation() === false) newSpecificationErrors.Specification = 'Weight must contain only numbers';
         }
         else if (type === 'Furniture') {
             if (!furnitH || furnitH === '') newSpecificationErrors.furnitH = 'Height must be assigned a value';
-            else if (isNaN(parseFloat(furnitH))) newSpecificationErrors.furnitH = 'Height must contain only numbers';
+            else if (furnitHNumberValidation() === false) newSpecificationErrors.furnitH = 'Height must contain only numbers';
 
             if (!furnitW || furnitW === '') newSpecificationErrors.furnitW = 'Width must be assigned a value';
-            else if (isNaN(parseFloat(furnitW))) newSpecificationErrors.furnitW = 'Width must contain only numbers';
+            else if (furnitWNumberValidation() === false) newSpecificationErrors.furnitW = 'Width must contain only numbers';
 
             if (!furnitL || furnitL === '') newSpecificationErrors.furnitL = 'Length must be assigned a value';
-            else if (isNaN(parseFloat(furnitL))) newSpecificationErrors.furnitL = 'Length must contain only numbers';
+            else if (furnitLNumberValidation() === false) newSpecificationErrors.furnitL = 'Length must contain only numbers';
         }
 
         return newSpecificationErrors;
 
+    }
+
+
+    // Functions to validate if the number-type inputs contain only numbers:
+    function dvdSpeciNumberValidation() {
+        return /^[0-9.,]+$/.test(dvdSpeci);
+    }
+
+    function bookSpeciNumberValidation() {
+        return /^[0-9.,]+$/.test(bookSpeci);
+    }
+
+    function furnitHNumberValidation() {
+        return /^[0-9.,]+$/.test(furnitH);
+    }
+
+    function furnitWNumberValidation() {
+        return /^[0-9.,]+$/.test(furnitW);
+    }
+
+    function furnitLNumberValidation() {
+        return /^[0-9.,]+$/.test(furnitL);
     }
 
 
