@@ -104,6 +104,21 @@ select {
     margin-top: 5px;
 }
 
+.specifItem {
+    flex: 1;
+    margin: 2% 0 2% 0;
+}
+
+.speciFeed {
+    margin-top: -20px;
+}
+
+
+@media (max-width: 1200px) {
+    .speciFeed {
+        margin-top: -15px;
+    }
+}
 
 
 /* Screen Width: 900px */

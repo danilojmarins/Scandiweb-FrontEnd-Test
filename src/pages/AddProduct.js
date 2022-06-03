@@ -146,11 +146,14 @@ const AddProduct = () => {
                         <Form.Control.Feedback type='invalid' className='feedback'>{errors.Price}</Form.Control.Feedback>
                     </Form.Group>
 
-                    <TypeSwitcherFunc setSpecification={setSpecification}
-                                      specificationErrorsValidation={specificationErrorsValidation}
-                                      newSpecificationErrors={newSpecificationErrors}
-                                      specificationErrors={specificationErrors}
-                                      />
+                    <Form.Group className='item'>
+                        <TypeSwitcherFunc setSpecification={setSpecification}
+                                        specificationErrorsValidation={specificationErrorsValidation}
+                                        newSpecificationErrors={newSpecificationErrors}
+                                        specificationErrors={specificationErrors}
+                                        />
+                        <Form.Control.Feedback type='invalid' className='feedback speciFeed'>{errors.Specification}</Form.Control.Feedback>
+                    </Form.Group>
 
                 </form>
             </div>

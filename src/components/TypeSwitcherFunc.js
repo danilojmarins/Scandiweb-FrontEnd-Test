@@ -131,7 +131,7 @@ const TypeSwitcherFunc = ({ setSpecification, specificationErrorsValidation, new
     // Conditional Rendering, renders the inputs according to which Type was selected:
     if(type === 'Select') {
         return(
-            <Form.Group className='item'>
+            <Form.Group className='specifItem'>
                     <Form.Label className='label' for='type'>Type Switcher</Form.Label>
                     <Form.Control required as='select' id='productType' name='type' onChange={handleTypeChange}>
                         <option value='Select' selected>Select</option>
@@ -145,7 +145,7 @@ const TypeSwitcherFunc = ({ setSpecification, specificationErrorsValidation, new
     } else if (type === 'DVD') {
         return(
             <div>
-                <Form.Group className='item'>
+                <Form.Group className='specifItem'>
                         <Form.Label className='label' for='type'>Type Switcher</Form.Label>
                         <Form.Select id='productType' name='type' onChange={handleTypeChange}>
                             <option value='Select'>Select</option>
@@ -155,7 +155,7 @@ const TypeSwitcherFunc = ({ setSpecification, specificationErrorsValidation, new
                         </Form.Select>
                 </Form.Group>
 
-                <Form.Group className='item'>
+                <Form.Group className='specifItem'>
                     <Form.Label className='label'>Size (MB)</Form.Label>
                     <Form.Control className='field' autoComplete='off' type='text' id='size' name='Specification' value={dvdSpeci} onChange={handleSizeChange}></Form.Control>
                     <Form.Control.Feedback type='invalid' className='feedback'>{specificationErrors.Specification}</Form.Control.Feedback>
@@ -165,7 +165,7 @@ const TypeSwitcherFunc = ({ setSpecification, specificationErrorsValidation, new
     } else if (type === 'Book') {
         return(
             <div>
-                <Form.Group className='item'>
+                <Form.Group className='specifItem'>
                             <Form.Label className='label' for='type'>Type Switcher</Form.Label>
                             <Form.Select id='productType' name='type' onChange={handleTypeChange}>
                                 <option value='Select'>Select</option>
@@ -175,7 +175,7 @@ const TypeSwitcherFunc = ({ setSpecification, specificationErrorsValidation, new
                             </Form.Select>
                 </Form.Group>
 
-                <Form.Group className='item'>
+                <Form.Group className='specifItem'>
                     <Form.Label className='label'>Weight (KG)</Form.Label>
                     <Form.Control className='field' autoComplete='off' type='text' id='weight' name='Specification' value={bookSpeci} onChange={handleWeightChange}></Form.Control>
                     <Form.Control.Feedback type='invalid' className='feedback'>{specificationErrors.Specification}</Form.Control.Feedback>
@@ -185,7 +185,7 @@ const TypeSwitcherFunc = ({ setSpecification, specificationErrorsValidation, new
     } else if (type === 'Furniture') {
         return(
             <div>
-                <Form.Group className='item'>
+                <Form.Group className='specifItem'>
                             <Form.Label className='label' for='type'>Type Switcher</Form.Label>
                             <Form.Select id='productType' name='type' onChange={handleTypeChange}>
                                 <option value='Select'>Select</option>
@@ -195,19 +195,19 @@ const TypeSwitcherFunc = ({ setSpecification, specificationErrorsValidation, new
                             </Form.Select>
                 </Form.Group>
 
-                <Form.Group className='item'>
+                <Form.Group className='specifItem'>
                     <Form.Label className='label'>Height (CM)</Form.Label>
                     <Form.Control className='field' autoComplete='off' type='text' id='height' name='Specification' value={furnitH} onChange={handleHeightChange}></Form.Control>
                     <Form.Control.Feedback type='invalid' className='feedback'>{specificationErrors.furnitH}</Form.Control.Feedback>
                 </Form.Group>
     
-                <Form.Group className='item'>
+                <Form.Group className='specifItem'>
                     <Form.Label className='label'>Width (CM)</Form.Label>
                     <Form.Control className='field' autoComplete='off' type='text' id='width' name='Specification' value={furnitW} onChange={handleWidthChange}></Form.Control>
                     <Form.Control.Feedback type='invalid' className='feedback'>{specificationErrors.furnitW}</Form.Control.Feedback>
                 </Form.Group>
     
-                <Form.Group className='item'>
+                <Form.Group className='specifItem'>
                     <Form.Label className='label'>Length (CM)</Form.Label>
                     <Form.Control className='field' autoComplete='off' type='text' id='length' name='Specification' value={furnitL} onChange={handleLengthChange}></Form.Control>
                     <Form.Control.Feedback type='invalid' className='feedback'>{specificationErrors.furnitL}</Form.Control.Feedback>
