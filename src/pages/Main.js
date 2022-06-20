@@ -14,7 +14,7 @@ const Main = () => {
     // Send Get Request to API:
     async function getProducts() {
 
-        let url = "https://scandiweb-test-assignment-danilojmarins.000webhostapp.com/";
+        let url = "https://scandiweb-test-assignment-danilojmarins.000webhostapp.com/index.php";
         await fetch(url)
         .then(response => response.json())
         .then(data => {

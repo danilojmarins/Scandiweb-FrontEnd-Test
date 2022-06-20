@@ -13,16 +13,18 @@ const AddProduct = () => {
     const [SKU, setSKU] = useState('');
     const [Name, setName] = useState('');
     const [Price, setPrice] = useState('');
-    const [Specification, setSpecification] = useState('');
+    const [Type, setType] = useState('Select');
+    const [DvdSpeci, setDvdSpeci] = useState('');
+    const [BookSpeci, setBookSpeci] = useState('');
+    const [FurnitH, setFurnitH] = useState('');
+    const [FurnitW, setFurnitW] = useState('');
+    const [FurnitL, setFurnitL] = useState('');
     const [errors, setErrors] = useState({});
-    const [specificationErrors, setSpecificationErrors] = useState({});
-    const specificationErrorsValidation = React.useRef(null);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    const product = {SKU, Name, Price, Specification};
+    const product = {SKU, Name, Price, Type, DvdSpeci, BookSpeci, FurnitH, FurnitW, FurnitL};
 
     const newErrors = {}
-    const newSpecificationErrors = {}
 
 
     // Validation of Errors:
@@ -36,19 +38,40 @@ const AddProduct = () => {
 
 
         if (!Price || Price === '') newErrors.Price = 'Price must be assigned a value';
-        else if (priceNumberValidation() === false) newErrors.Price = 'Price must contain only numbers';
+        else if (NumberValidation(Price) === false) newErrors.Price = 'Price must contain only numbers';
 
+
+        if(!Type || Type === '' || Type === 'Select') newErrors.Type = 'Choose a product type';
+
+        else if (Type === 'DVD') {
+            if (!DvdSpeci || DvdSpeci === '') newErrors.DvdSpeci = 'Size must be assigned a value';
+            else if (NumberValidation(DvdSpeci) === false) newErrors.DvdSpeci = 'Size must contain only numbers';
+        }
+
+        else if (Type === 'Book') {
+            if (!BookSpeci || BookSpeci === '') newErrors.BookSpeci = 'Weight must be assigned a value';
+            else if (NumberValidation(BookSpeci) === false) newErrors.BookSpeci = 'Weight must contain only numbers';
+        }
+
+        else if (Type === 'Furniture') {
+            if (!FurnitH || FurnitH === '') newErrors.FurnitH = 'Height must be assigned a value';
+            else if (NumberValidation(FurnitH) === false) newErrors.FurnitH = 'Height must contain only numbers';
+
+            if (!FurnitW || FurnitW === '') newErrors.FurnitW = 'Width must be assigned a value';
+            else if (NumberValidation(FurnitW) === false) newErrors.FurnitW = 'Width must contain only numbers';
+
+            if (!FurnitL || FurnitL === '') newErrors.FurnitL = 'Length must be assigned a value';
+            else if (NumberValidation(FurnitL) === false) newErrors.FurnitL = 'Length must contain only numbers';
+        }
         
-        if (!Specification || Specification === '' || Specification === ' MB' || Specification === ' KG' || Specification === ' x  x ') newErrors.Specification = 'Specification must be assigned a value';
-
         return newErrors;
 
     }
 
 
-    // Validate if Price contain only numbers:
-    function priceNumberValidation() {
-        return /^[0-9.,]+$/.test(Price);
+    // Validate if contain only numbers:
+    function NumberValidation(num) {
+        return /^[0-9.,]+$/.test(num);
     }
 
 
@@ -58,11 +81,10 @@ const AddProduct = () => {
         e.preventDefault();
 
         const newErrors = productErrorsValidation();
-        const newSpecificationErrors = specificationErrorsValidation.current();
 
-        if(Object.keys(newErrors).length > 0 || Object.keys(newSpecificationErrors).length > 0) {
+        if(Object.keys(newErrors).length > 0) {
             setErrors(newErrors);
-            setSpecificationErrors(newSpecificationErrors);
+            console.log(errors);
         } else {
 
             ky.post('https://scandiweb-test-assignment-danilojmarins.000webhostapp.com/post.php', { body: JSON.stringify(product) })
@@ -71,7 +93,12 @@ const AddProduct = () => {
                 setSKU('');
                 setName('');
                 setPrice('');
-                setSpecification('');
+                setType('');
+                setDvdSpeci('');
+                setBookSpeci('');
+                setFurnitH('');
+                setFurnitW('');
+                setFurnitL('');
                 routeChange();
             });
             
@@ -147,12 +174,15 @@ const AddProduct = () => {
                     </Form.Group>
 
                     <Form.Group className='item'>
-                        <TypeSwitcherFunc setSpecification={setSpecification}
-                                        specificationErrorsValidation={specificationErrorsValidation}
-                                        newSpecificationErrors={newSpecificationErrors}
-                                        specificationErrors={specificationErrors}
+                        <TypeSwitcherFunc setType={setType}
+                                          setDvdSpeci={setDvdSpeci}
+                                          setBookSpeci={setBookSpeci}
+                                          setFurnitH={setFurnitH}
+                                          setFurnitW={setFurnitW}
+                                          setFurnitL={setFurnitL}
+                                          errors={errors}
+                                          Type={Type}
                                         />
-                        <Form.Control.Feedback type='invalid' className='feedback speciFeed'>{errors.Specification}</Form.Control.Feedback>
                     </Form.Group>
 
                 </form>
